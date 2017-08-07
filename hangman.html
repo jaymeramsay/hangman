@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Hangman! </title>
+  </head>
+  <body>
+      <h1> Welcome to Hangman! </h1>
+  <script>
+
+  //set up an array holding your list of words
+    var words = [
+    "jellyfish",
+    "motorcycle",
+    "finger",
+    "hobo",
+    "drums",
+  ];
+
+//figure out how to choose those words at random
+    var word = words[Math.floor(Math.random()*words.length)];
+
+//figure out how to display and loop through the letters of the word
+    var spaceWord = [];
+    for (var i = 0; i < word.length; i++) {
+      spaceWord[i] = "_";
+    }
+    console.log(spaceWord);
+
+//set up a loop that sorts answers and prevents problematic guesses
+    var remainingLetters = word.length;
+
+    while (remainingLetters > 0) {
+      alert(spaceWord.join(" "));
+
+      var guess = prompt("You are playing Hangman! Please pick a letter.");
+      console.log("GUESSS:",guess);
+      if (guess === null) {
+          break;
+        }
+      else if (guess.length !== 1) {
+          alert("Please enter a single letter!");
+      } else {
+  //create a second loop to sift through the letters of the spaceword
+          for (var j = 0; j < word.length; j++)
+            if (word[j] === guess) {
+              spaceWord[j] = guess;
+              remainingLetters--;
+
+
+            }
+        }
+
+    }
+//let player know when they've guessed the word with a message
+    alert(spaceWord.join(" "));
+    alert("You succeeded! Woo! You guessed " + word);
+
+
+  </script>
+</body>
+</html>
